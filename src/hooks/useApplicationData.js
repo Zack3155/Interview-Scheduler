@@ -93,7 +93,7 @@ export default function useApplicationData() {
   }
 
   const [state, dispatch] = useReducer(reducer, {
-    day: "Monday",
+    day: "Monday", // show Monday content at begining by default
     days: [],
     appointments: {},
     interviewers: {}
@@ -102,7 +102,8 @@ export default function useApplicationData() {
   const setDay = day => dispatch({ type: SET_DAY, day });
 
   useEffect(() => {
-    const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    //const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
+    const webSocket = new WebSocket('ws://localhost:8001');
 
     webSocket.onmessage = (event) => {
       const type = JSON.parse(event.data).type;
@@ -115,6 +116,6 @@ export default function useApplicationData() {
     return () => webSocket.close();
   }, []);
 
-  //console.log(state.days);
+  //console.log(state.day, state.days);
   return { state, setDay, bookInterview, cancelInterview };
 };
