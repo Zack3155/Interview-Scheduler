@@ -45,7 +45,7 @@ export default function useApplicationData() {
       });
   };
 
-  function updateSpots(bookNew) {
+  function updateSpots(bookOrCancel) {
     const reference = { 'Monday': 0, 'Tuesday': 1, 'Wednesday': 2, 'Thursday': 3, 'Friday': 4 };
     const id = reference[state.day];
     const target = state.days[id];
@@ -53,7 +53,7 @@ export default function useApplicationData() {
 
     const day = {
       ...target,
-      spots: bookNew ? (count - 1) : (count + 1)
+      spots: bookOrCancel ? (count - 1) : (count + 1)
     };
     const days = [...state.days];
     days[id] = day;
