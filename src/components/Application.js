@@ -7,6 +7,7 @@ import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "help
 
 
 export default function Application() {
+  // Initialize state for the App
   const {
     state,
     setDay,
@@ -16,6 +17,7 @@ export default function Application() {
 
   const interviewers = getInterviewersForDay(state, state.day);
 
+  // Create a list of Appointments Component
   const appointments = getAppointmentsForDay(state, state.day)
     .map((appointment) => {
       const interviewInfo = getInterview(state, appointment.interview);

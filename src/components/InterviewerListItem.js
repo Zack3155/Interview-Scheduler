@@ -9,6 +9,7 @@ export default function InterviewerListItem(props) {
       'interviewers__item--selected': props.selected
     });
 
+  // Create a single interviewer component
   return (
     <li className={interviewerClass}
       onClick={props.setInterviewer}>

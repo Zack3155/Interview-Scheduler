@@ -11,7 +11,7 @@ export default function InterviewerList(props) {
       setInterviewer={() => props.onChange(interviewer.id)}
     />
   );
-
+  // Create a list of interviewers component
   return (
     <section className="interviewers">
       <h4 className="interviewers__header text--light">Interviewer</h4>

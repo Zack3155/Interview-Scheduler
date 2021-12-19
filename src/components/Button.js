@@ -10,6 +10,7 @@ export default function Button(props) {
       });
 
    return (
+      //Adding Interactivity to the Button
       <button
          className={buttonClass}
          onClick={props.onClick}
