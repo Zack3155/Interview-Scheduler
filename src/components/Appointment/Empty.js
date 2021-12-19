@@ -1,12 +1,7 @@
 import React from "react";
 
 export default function Empty(props) {
-  // let interviewerClass = classNames(
-  //   'interviewers__item',
-  //   {
-  //     'interviewers__item--selected': props.selected
-  //   });
-
+  // create empty component
   return (
     <main className="appointment__add">
       <img

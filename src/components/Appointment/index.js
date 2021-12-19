@@ -28,6 +28,7 @@ export default function Appointment(props) {
     props.interview ? SHOW : EMPTY
   );
 
+  // Mode changes and call bookInterview when user confirm booking an interview
   const save = (name, interviewer) => {
     transition(STATUS_SAVE, true);
     props.bookInterview(props.id,
@@ -38,6 +39,8 @@ export default function Appointment(props) {
       .then(() => transition(SHOW))
       .catch(() => transition(ERROR_SAVE, true));
   };
+
+  // Mode changes and call cancelInterview when user confirm canceling an interview
   const onDelete = () => {
     transition(STATUS_DELETE, true)
     props.cancelInterview(props.id)
@@ -45,6 +48,7 @@ export default function Appointment(props) {
       .catch(() => transition(ERROR_DELETE, true));
   };
 
+  // Force mode change if conditions meet
   useEffect(() => {
     if (props.interview && mode === EMPTY) {
       transition(SHOW);
@@ -55,6 +59,7 @@ export default function Appointment(props) {
   }, [transition, props.interview, mode]);
 
 
+  // Create an Appointment component
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
