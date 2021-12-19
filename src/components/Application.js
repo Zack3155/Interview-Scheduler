@@ -3,7 +3,7 @@ import DayList from "components/DayList";
 import React from "react";
 import Appointment from "components/Appointment";
 import useApplicationData from "hooks/useApplicationData";
-import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "components/helpers/selectors";
+import { getAppointmentsForDay, getInterview, getInterviewersForDay } from "helpers/selectors";
 
 
 export default function Application() {
@@ -56,6 +56,7 @@ export default function Application() {
       </section>
       <section className="schedule">
         {appointments}
+        <Appointment time="5pm" />
       </section>
     </main>
   );

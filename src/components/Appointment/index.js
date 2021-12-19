@@ -53,6 +53,7 @@ export default function Appointment(props) {
     }
   }, [transition, props.interview, mode]);
 
+
   return (
     <article className="appointment" data-testid="appointment">
       <Header time={props.time} />
