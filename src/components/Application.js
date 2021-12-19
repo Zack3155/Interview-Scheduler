@@ -34,6 +34,7 @@ export default function Application() {
       );
     });
 
+  // Create all necassary components for an App
   return (
     <main className="layout">
       <section className="sidebar">
