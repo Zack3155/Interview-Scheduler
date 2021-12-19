@@ -7,8 +7,10 @@ import reducer, {
   SET_INTERVIEW
 } from "reducers/application";
 
+// Custom hook for initializing all necessary states
 export default function useApplicationData() {
 
+  // Generate a new or update a exisiting appointment when a interview confirms booking
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
@@ -29,6 +31,7 @@ export default function useApplicationData() {
       });
   };
 
+  // Delete a exisiting appointment when a interview confirms canceling
   function cancelInterview(id) {
     const appointment = {
       ...state.appointments[id],
@@ -45,6 +48,7 @@ export default function useApplicationData() {
       });
   };
 
+  // Update corresponding spots of that day when book or cancel an interview
   function updateSpots(bookOrCancel) {
     const reference = { 'Monday': 0, 'Tuesday': 1, 'Wednesday': 2, 'Thursday': 3, 'Friday': 4 };
     const id = reference[state.day];
@@ -60,6 +64,7 @@ export default function useApplicationData() {
     return days;
   };
 
+  // Retrive data from SQL database
   function syncData() {
     return Promise.all([
       axios.get('/api/days'),
@@ -75,7 +80,7 @@ export default function useApplicationData() {
     });
   };
 
-
+  //initializing all necessary states using reducer
   const [state, dispatch] = useReducer(reducer, {
     day: "Monday", // show Monday content at begining by default
     days: [],
@@ -86,9 +91,8 @@ export default function useApplicationData() {
   const setDay = day => dispatch({ type: SET_DAY, day });
 
   useEffect(() => {
-    //const webSocket = new WebSocket(process.env.REACT_APP_WEBSOCKET_URL);
     const webSocket = new WebSocket('ws://localhost:8001');
-
+    // sync data cross windows
     webSocket.onmessage = (event) => {
       const type = JSON.parse(event.data).type;
       if (type === SET_INTERVIEW) {
@@ -100,6 +104,5 @@ export default function useApplicationData() {
     return () => webSocket.close();
   }, []);
 
-  //console.log(state.day, state.days);
   return { state, setDay, bookInterview, cancelInterview };
 };
