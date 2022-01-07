@@ -30,7 +30,7 @@ export default function Appointment(props) {
 
   // Mode changes and call bookInterview when user confirm booking an interview
   const save = (name, interviewer) => {
-    transition(STATUS_SAVE, true);
+    transition(STATUS_SAVE);
     props.bookInterview(props.id,
       {
         student: name,
